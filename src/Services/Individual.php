@@ -34,10 +34,9 @@ class Individual
      * @return array
      * @throws ConnectionException
      */
-    function create(string $name, string $surname, string $tckn,string $dob, string $phone=null, string $email=null, string $pob=null, string $country=null, string $city=null, string $district=null, string $address=null, string $driverLicenceNo=null, string $vkn=null) : array
+    function create(string $name, string $surname, string $tckn, string $dob, string $phone = null, string $email = null, string $pob = null, string $country = null, string $city = null, string $district = null, string $address = null, string $driverLicenceNo = null, string $vkn = null): array
     {
         $baseUrl = $this->url . '/IndividualOnboarding/Individuals/Create';
-        dd($this->env);
         $postData = $data = [
             "Name" => "{$name}",
             "Surname" => "{$surname}",
@@ -68,9 +67,139 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' => 'Bir hata oluştu: ' . $response->body()
+                'message' =>  $response->body()
             ];
         }
 
+    }
+
+    /**
+     * @param string $apiReferenceId "3e4cae28-622d-48b3-86b7-1a3cde436d31"
+     * @param string $token "34a4cae28-622d-48b3-86b7-1a3cde436d31"
+     * @param string $otpCode "123456"
+     * @return array
+     * @throws ConnectionException
+     */
+    function validateOtpToken(string $apiReferenceId, string $token, string $otpCode) : array
+    {
+        $baseUrl = $this->url . '/IndividualOnboarding/Individuals/OtpRequestValidation';
+
+        $postData = [
+            "Token" => $token,
+            "OtpCode" => $otpCode,
+            "RequestInfo" => [
+                "ApiReferenceId" => Str::uuid()->toString(),
+                "UserCode" => config('nomuvel.user_code'),
+                "Pin" => config('nomuvel.pin'),
+                "Channel" => config('nomuvel.channel'),
+            ]
+        ];
+
+        $response = Http::asJson()->post($baseUrl, $postData);
+
+        if ($response->successful()) {
+            return $response->json();
+
+        } else {
+            return [
+                'error' => true,
+                'message' =>  $response->body()
+            ];
+        }
+
+    }
+
+    /**
+     * @param string $tckn "11111111111"
+     * @return array
+     * @throws ConnectionException
+     */
+    function getByTckn(string $tckn) : array
+    {
+        $baseUrl = $this->url . '/IndividualOnboarding/Individuals/GetByTckn';
+        $postData = [
+            "tckn" => $tckn,
+            "RequestInfo" => [
+                "ApiReferenceId" => Str::uuid()->toString(),
+                "UserCode" => config('nomuvel.user_code'),
+                "Pin" => config('nomuvel.pin'),
+                "Channel" => config('nomuvel.channel'),
+            ]
+        ];
+
+        $response = Http::asJson()->post($baseUrl, $postData);
+        if ($response->successful()) {
+            return $response->json();
+
+        } else {
+            return [
+                'error' => true,
+                'message' =>  $response->body()
+            ];
+        }
+    }
+
+    /**
+     * @param string $individualId "3e4cae28-622d-48b3-86b7-1a3cde436"
+     * @return array
+     * @throws ConnectionException
+     */
+    function getByIndividualId(string $individualId) : array
+    {
+        $baseUrl = $this->url . '/IndividualOnboarding/Individuals/GetByObjectId';
+
+        $postData = [
+            "individualObjectId" => $individualId,
+            "RequestInfo" => [
+                "ApiReferenceId" => Str::uuid()->toString(),
+                "UserCode" => config('nomuvel.user_code'),
+                "Pin" => config('nomuvel.pin'),
+                "Channel" => config('nomuvel.channel'),
+            ]
+        ];
+
+        $response = Http::asJson()->post($baseUrl, $postData);
+
+        if ($response->successful()) {
+            return $response->json();
+
+        } else {
+            return [
+                'error' => true,
+                'message' =>  $response->body()
+            ];
+        }
+    }
+
+    /**
+     * @param string $tckn "11111111111"
+     * @return array
+     * @throws ConnectionException
+     */
+    function queryByTckn(string $tckn) : array
+    {
+        $baseUrl = $this->url . '/IndividualOnboarding/Individuals/QueryByTckn';
+
+        $postData = [
+            "tckn" => $tckn,
+            "RequestInfo" => [
+                "ApiReferenceId" => Str::uuid()->toString(),
+                "UserCode" => config('nomuvel.user_code'),
+                "Pin" => config('nomuvel.pin'),
+                "Channel" => config('nomuvel.channel'),
+            ]
+        ];
+
+        $response = Http::asJson()->post($baseUrl, $postData);
+
+        if ($response->successful()) {
+            return $response->json();
+
+        } else {
+            return [
+                'error' => true,
+                'message' =>  $response->body()
+            ];
+        }
     }
 }

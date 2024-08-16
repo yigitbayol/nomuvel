@@ -9,14 +9,12 @@ use Illuminate\Support\Str;
 class Emoney
 {
     private $nomuvel;
-    private $env;
     private $url;
 
     public function __construct(Nomuvel $nomuvel)
     {
         $this->nomuvel = $nomuvel;
-        $this->env = config('nomuvel.env');
-        $this->url = $this->env == 'dev' ? config('nomuvel.test_url') : config('nomuvel.production_url');
+        $this->url = config('nomuvel.env') === 'dev' ? config('nomuvel.test_url') : config('nomuvel.production_url');
     }
 
     /**

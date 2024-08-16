@@ -38,7 +38,7 @@ Nomuvel, [Nomupay API](https://www.nomupay.com.tr) ile entegre olmanızı sağla
 #### E-Money Hesap Oluşturma
 
 ```php
-use YourNamespace\Nomuvel\Facades\Nomuvel;
+use Yigitbayol\Nomuvel\Services\Nomuvel;
 
 /**
  * Yeni bir E-Money hesabı oluşturun
@@ -50,7 +50,8 @@ use YourNamespace\Nomuvel\Facades\Nomuvel;
  * @return array
  * @throws ConnectionException
  */
-$response = Nomuvel::createAccount("11111111111", "TR1312312321312312", "https://nomupay.com.tr/success", "https://nomupay.com.tr/fail");
+$nomuvel = new Nomuvel();
+$response = $nomuvel->emoney->createAccount("11111111111", "TR1312312321312312", "https://nomupay.com.tr/success", "https://nomupay.com.tr/fail");
 
 if ($response['error']) {
     // Hata yönetimi
@@ -63,7 +64,7 @@ if ($response['error']) {
 
 ## IBAN'a Para Gönderme
 ```php
-use YourNamespace\Nomuvel\Facades\Nomuvel;
+use Yigitbayol\Nomuvel\Services\Nomuvel;
 
 /**
 * IBAN'a para gönderin
@@ -78,7 +79,8 @@ use YourNamespace\Nomuvel\Facades\Nomuvel;
 * @return array
 * @throws ConnectionException
   */
-  $response = Nomuvel::sendToExternalIBAN("34a4cae28-622d-48b3-86b7-1a3cde436d31", "85a4cde28-622d-48b3-1a3cde436d31", "TR1111111111111111", "12345678910", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", "Test");
+  $nomuvel = new Nomuvel();
+  $response = $nomuvel->emoney->sendToExternalIBAN("34a4cae28-622d-48b3-86b7-1a3cde436d31", "85a4cde28-622d-48b3-1a3cde436d31", "TR1111111111111111", "12345678910", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", "Test");
 
 if ($response['error']) {
 // Hata yönetimi
@@ -91,8 +93,7 @@ print_r($response);
 
 ## P2P Para Gönderimi
 ```php
-use YourNamespace\Nomuvel\Facades\Nomuvel;
-
+use Yigitbayol\Nomuvel\Services\Nomuvel;
 /**
  * P2P para gönderin
  *
@@ -105,7 +106,8 @@ use YourNamespace\Nomuvel\Facades\Nomuvel;
  * @return array
  * @throws ConnectionException
  */
-$response = Nomuvel::p2pSend("85a4cde28-622d-48b3-1a3cde436d31", "3e4cae28-622d-48b3-86b7-1a3cde436d31", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", 0, "Test");
+$nomuvel = new Nomuvel();
+$response = $nomuvel->emoney->P2PSend("85a4cde28-622d-48b3-1a3cde436d31", "3e4cae28-622d-48b3-86b7-1a3cde436d31", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", 0, "Test");
 
 if ($response['error']) {
     // Hata yönetimi
@@ -119,8 +121,7 @@ if ($response['error']) {
 
 ## Para Çekme
 ```php
-use YourNamespace\Nomuvel\Facades\Nomuvel;
-
+use Yigitbayol\Nomuvel\Services\Nomuvel;
 /**
  * E-Money hesabından para çekin
  *
@@ -134,7 +135,8 @@ use YourNamespace\Nomuvel\Facades\Nomuvel;
  * @return array
  * @throws ConnectionException
  */
-$response = Nomuvel::withdrawal("85a4cde28-622d-48b3-1a3cde436d31", 100, "Ozan", "3e4cae28-622d-48b3-86b7-1a3cde436d31", "INSTANT", "2024-08-14T09:45:02.289Z", "Test");
+$nomuvel = new Nomuvel();
+$response = $nomuvel->emoney->withdrawal("85a4cde28-622d-48b3-1a3cde436d31", 100, "Ozan", "3e4cae28-622d-48b3-86b7-1a3cde436d31", "INSTANT", "2024-08-14T09:45:02.289Z", "Test");
 
 if ($response['error']) {
     // Hata yönetimi

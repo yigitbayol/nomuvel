@@ -63,3 +63,110 @@ if ($response['error']) {
     // Başarılı yanıt yönetimi
     print_r($response);
 }
+```
+
+## IBAN'a Para Gönderme
+```php
+use YourNamespace\Nomuvel\Facades\Nomuvel;
+
+/**
+* IBAN'a para gönderin
+*
+* @param string $senderClientId "34a4cae28-622d-48b3-86b7-1a3cde436d31"
+* @param string $senderAccountId "85a4cde28-622d-48b3-1a3cde436d31"
+* @param string $receiverIBAN "TR1111111111111111"
+* @param string $receiverTcknVkn "12345678910"
+* @param int $amount "1 TL için 100"
+* @param string $partnerReference "3e4cae28-622d-48b3-86b7-1a3cde436d31"
+* @param string|null $description "Test"
+* @return array
+* @throws ConnectionException
+  */
+  $response = Nomuvel::sendToExternalIBAN("34a4cae28-622d-48b3-86b7-1a3cde436d31", "85a4cde28-622d-48b3-1a3cde436d31", "TR1111111111111111", "12345678910", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", "Test");
+
+if ($response['error']) {
+// Hata yönetimi
+echo $response['message'];
+} else {
+// Başarılı yanıt yönetimi
+print_r($response);
+}
+```
+
+## P2P Para Gönderimi
+```php
+use YourNamespace\Nomuvel\Facades\Nomuvel;
+
+/**
+ * P2P para gönderin
+ *
+ * @param string $senderAccountId "85a4cde28-622d-48b3-1a3cde436d31"
+ * @param string $receiverAccountId "3e4cae28-622d-48b3-86b7-1a3cde436d31"
+ * @param int $amount "1 TL için 100 girilmelidir"
+ * @param string $referenceId "3e4cae28-622d-48b3-86b7-1a3cde436d31"
+ * @param int $partnerId 0
+ * @param string|null $description "Test"
+ * @return array
+ * @throws ConnectionException
+ */
+$response = Nomuvel::p2pSend("85a4cde28-622d-48b3-1a3cde436d31", "3e4cae28-622d-48b3-86b7-1a3cde436d31", 100, "3e4cae28-622d-48b3-86b7-1a3cde436d31", 0, "Test");
+
+if ($response['error']) {
+    // Hata yönetimi
+    echo $response['message'];
+} else {
+    // Başarılı yanıt yönetimi
+    print_r($response);
+}
+
+```
+
+## Para Çekme
+```php
+use YourNamespace\Nomuvel\Facades\Nomuvel;
+
+/**
+ * E-Money hesabından para çekin
+ *
+ * @param string $accountId "85a4cde28-622d-48b3-1a3cde436d31"
+ * @param int $amount "1 TL için 100 değeri girilmeli"
+ * @param string $transferChannel "Ozan,Papara vb.."
+ * @param string $referenceId "3e4cae28-622d-48b3-86b7-1a3cde436d31"
+ * @param string $transferType "INSTANT veya GROUP"
+ * @param string|null $transferDate "Sadece INSTANT için zorunludur. 2024-08-14T09:45:02.289Z"
+ * @param string|null $description "Test"
+ * @return array
+ * @throws ConnectionException
+ */
+$response = Nomuvel::withdrawal("85a4cde28-622d-48b3-1a3cde436d31", 100, "Ozan", "3e4cae28-622d-48b3-86b7-1a3cde436d31", "INSTANT", "2024-08-14T09:45:02.289Z", "Test");
+
+if ($response['error']) {
+    // Hata yönetimi
+    echo $response['message'];
+} else {
+    // Başarılı yanıt yönetimi
+    print_r($response);
+}
+
+```
+## API Dökümantasyonu
+Nomuvel, aşağıdaki API endpointlerini desteklemektedir:
+
+## E-Money API
+
+* CreateAccountWithTckn
+* SendToExternalIBAN
+* P2PSend
+* Withdrawal
+
+## Individual Onboarding API
+* Create
+* Validate Otp Token
+* Get By Tckn
+* Query By Tckn
+* Add To E-Money
+
+Daha fazla bilgi için E-Money API Dokümantasyonu ve Individual Onboarding API Dokümantasyonu sayfalarına göz atabilirsiniz.
+
+Lisans
+Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için LICENSE dosyasına bakabilirsiniz.

@@ -1,0 +1,19 @@
+{
+    "name": "yigitbayol/nomuvel",
+    "description": "Nomupay Laravel Kütüphanesi",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Yigitbayol\\Nomuvel\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Yigit Bayol",
+            "email": "yigitbayol@gmail.com"
+        }
+    ]
+}

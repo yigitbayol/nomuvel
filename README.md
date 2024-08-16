@@ -5,11 +5,7 @@ Nomuvel, [Nomupay API](https://www.nomupay.com.tr) ile entegre olmanızı sağla
 ## Özellikler
 
 - E-Money API ile entegrasyon
-- Individual Onboarding API ile kullanıcı kaydı
-- Otomatik endpoint oluşturma ve çağırma
-- JSON formatında veri alışverişi
-- Hata yönetimi ve durum kodu döndürme
-
+- Individual Onboarding API entegrasyonu
 ## Kurulum
 
 1. Projeye paketi ekleyin:

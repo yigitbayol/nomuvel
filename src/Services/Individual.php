@@ -42,7 +42,7 @@ class Individual
             "Surname" => "{$surname}",
             "TCKN" => "{$tckn}",
             "DateOfBirth" => "{$dob}",
-            "Channel " => config('nomuvel.channel'),
+            "Channel" => config('nomuvel.channel'),
             "RequestInfo" => [
                 "ApiReferenceId" => Str::uuid()->toString(),
                 "UserCode" => config('nomuvel.user_code'),
@@ -59,7 +59,7 @@ class Individual
             return [
                 'error' => true,
                 'message' =>  $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
 
@@ -96,7 +96,7 @@ class Individual
             return [
                 'error' => true,
                 'message' =>  $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
 
@@ -128,7 +128,7 @@ class Individual
             return [
                 'error' => true,
                 'message' =>  $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
     }
@@ -161,7 +161,7 @@ class Individual
             return [
                 'error' => true,
                 'message' =>  $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
     }
@@ -194,7 +194,7 @@ class Individual
             return [
                 'error' => true,
                 'message' =>  $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
     }

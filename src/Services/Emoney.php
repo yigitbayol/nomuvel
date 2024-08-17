@@ -51,7 +51,7 @@ class Emoney
             return [
                 'error' => true,
                 'message' => $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
 
@@ -137,7 +137,7 @@ class Emoney
             return [
                 'error' => true,
                 'message' => $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
     }
@@ -180,7 +180,7 @@ class Emoney
             return [
                 'error' => true,
                 'message' => $response->body(),
-                'request' => $postData
+                'request' => json_encode($postData,JSON_PRETTY_PRINT)
             ];
         }
     }

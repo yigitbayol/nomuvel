@@ -58,7 +58,8 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' =>  $response->body()
+                'message' =>  $response->body(),
+                'request' => $postData
             ];
         }
 
@@ -94,7 +95,8 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' =>  $response->body()
+                'message' =>  $response->body(),
+                'request' => $postData
             ];
         }
 
@@ -125,7 +127,8 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' =>  $response->body()
+                'message' =>  $response->body(),
+                'request' => $postData
             ];
         }
     }
@@ -157,7 +160,8 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' =>  $response->body()
+                'message' =>  $response->body(),
+                'request' => $postData
             ];
         }
     }
@@ -189,7 +193,8 @@ class Individual
         } else {
             return [
                 'error' => true,
-                'message' =>  $response->body()
+                'message' =>  $response->body(),
+                'request' => $postData
             ];
         }
     }

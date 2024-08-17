@@ -50,7 +50,8 @@ class Emoney
         } else {
             return [
                 'error' => true,
-                'message' => 'Bir hata oluştu: ' . $response->body()
+                'message' => $response->body(),
+                'request' => $postData
             ];
         }
 
@@ -135,7 +136,8 @@ class Emoney
         } else {
             return [
                 'error' => true,
-                'message' => 'Bir hata oluştu: ' . $response->body()
+                'message' => $response->body(),
+                'request' => $postData
             ];
         }
     }
@@ -177,7 +179,8 @@ class Emoney
         } else {
             return [
                 'error' => true,
-                'message' => 'Bir hata oluştu: ' . $response->body()
+                'message' => $response->body(),
+                'request' => $postData
             ];
         }
     }

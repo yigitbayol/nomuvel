@@ -7,4 +7,5 @@ return [
     'user_code' =>  env('NOMUVEL_USER_CODE','20676'),
     'pin' => env('NOMUVEL_PIN','7D0E9E66A2624A9D9103'),
     'channel' => env('NOMUVEL_CHANNEL','KISMETIM'),
+    'sub_channel' => env('NOMUVEL_SUB_CHANNEL','KISMETIM'),
 ];

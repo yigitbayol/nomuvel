@@ -34,31 +34,25 @@ class Individual
      * @return array
      * @throws ConnectionException
      */
-    function create(string $name, string $surname, string $tckn, string $dob, string $phone = null, string $email = null, string $pob = null, string $country = null, string $city = null, string $district = null, string $address = null, string $driverLicenceNo = null, string $vkn = null): array
+    function create(string $name, string $surname, string $tckn, string $dob): array
     {
         $baseUrl = $this->url . '/IndividualOnboarding/Individuals/Create';
         $postData = $data = [
             "Name" => "{$name}",
             "Surname" => "{$surname}",
             "TCKN" => "{$tckn}",
-            "VKN" => $vkn,
-            "Phone" => "{$phone}",
-            "Email" => "{$email}",
             "DateOfBirth" => "{$dob}",
-            "PlaceOfBirth" => "{$pob}",
-            "Country" => "{$country}",
-            "City" => "{$city}",
-            "District" => "{$district}",
-            "Address" => "{$address}",
-            "DriverLicenceNumber" => "{$driverLicenceNo}",
             "Channel " => config('nomuvel.channel'),
             "RequestInfo" => [
                 "ApiReferenceId" => Str::uuid()->toString(),
                 "UserCode" => config('nomuvel.user_code'),
                 "Pin" => config('nomuvel.pin'),
-                "Channel" => config('nomuvel.channel'),
+                "Channel" => config('nomuvel.sub_channel'),
             ]
         ];
+
+        dd(json_encode($postData));
+
 
         $response = Http::asJson()->post($baseUrl, $postData);
 

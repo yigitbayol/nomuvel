@@ -51,9 +51,6 @@ class Individual
             ]
         ];
 
-        dd(json_encode($postData));
-
-
         $response = Http::asJson()->post($baseUrl, $postData);
 
         if ($response->successful()) {

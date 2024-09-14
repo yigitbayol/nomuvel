@@ -8,8 +8,8 @@ use Illuminate\Support\Str;
 
 class Emoney
 {
-    private $nomuvel;
-    private $url;
+    protected $nomuvel;
+    protected $url;
 
     public function __construct(Nomuvel $nomuvel)
     {

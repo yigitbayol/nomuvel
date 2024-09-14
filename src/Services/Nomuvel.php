@@ -8,5 +8,6 @@ class Nomuvel
     {
         $this->emoney = new Emoney($this);
         $this->individual = new Individual($this);
+        $this->sharedPos = new SharedPos($this);
     }
 }

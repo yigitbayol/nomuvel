@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Individual
 {
-    private $nomuvel;
+    protected $nomuvel;
     private mixed $url;
 
     public function __construct(Nomuvel $nomuvel)
